@@ -13,4 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require jquery-ui
+//= require jquery-ui/effect.all
+//= require spin
+//= require jquery.spin
+
+//= require bootstrap-sprockets
+//= require turbolinks
+
 //= require_tree .

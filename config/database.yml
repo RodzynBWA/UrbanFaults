@@ -10,7 +10,7 @@ default: &default
 
 development:
   <<: *default
-  database: imp_dev
+  database: mu_dev
   password: <%= ENV['db_pswd'] %>
 
 # Warning: The database defined as "test" will be erased and
@@ -18,7 +18,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: imp_test
+  database: mu_test
   password: <%= ENV['db_pswd'] %>
 
 production:
