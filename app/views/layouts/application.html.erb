@@ -11,13 +11,13 @@
 </head>
 <body>
   <header id="header" class="">
-    <%= render template: "layouts/header" %>
+    <%= content_for?(:header) ? yield(:header) : (render template: "layouts/header") %>
   </header>
   <section id="content">
-    <%=content_for?(:content) ? yield(:content) : yield %>
+    <%= content_for?(:content) ? yield(:content) : yield %>
   </section>
   <footer id="footer">
-    <%= render template: "layouts/footer" %>
+    <%= content_for?(:footer) ? yield(:footer) : (render template: "layouts/footer") %>
   </footer>
 </body>
 </html>

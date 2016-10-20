@@ -1,3 +1,18 @@
-// Place all the styles related to the Home_Pages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$url_bg: asset-url('background.png');
+
+body {
+   
+   //Boostrap fixes
+   .col-sm-12, .col-md-12, .col-lg-12 {padding:0px;}
+
+   // Content
+   #entrance {
+    background-image: $url_bg;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+    margin: 0;
+    padding: 130px 0 250px 0;
+   }
+}

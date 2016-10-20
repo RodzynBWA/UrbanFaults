@@ -23,7 +23,8 @@ pl:
       title: Miejskie Usterki
       desc: do napisania ....
     header:
-    
+      domain: MiejskieUsterki.pl
+      home: Strona główna
     footer: 
         
   users:
