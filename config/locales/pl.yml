@@ -17,6 +17,7 @@ pl:
         first_name: Imię
         last_name: Nazwisko
         password: Hasło
+        password_confirmation: Powtórz hasło
         city: Miasto
       report:
         name: Tytuł
@@ -34,11 +35,16 @@ pl:
       domain: MiejskieUsterki.pl
       home: Strona główna
       login: Zaloguj się
+      logout: Wyloguj
+      profile: Pokaż Profil
+      welcome: Witaj
     footer: 
       domain: MiejskieUsterki.pl
         
   users:
     new:
+    reg:
+      register: Zarejestruj
       
   sessions:
     new:

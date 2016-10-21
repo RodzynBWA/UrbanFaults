@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   VALID_EMAIL_REGEX = /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :require_user, only: [:show, :edit, :update, :destroy]
+  before_action :redirect_logged_in, only: [:new]
   
   # GET /users/1
   # GET /users/1.json
@@ -22,13 +23,12 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to controller: :users, action: :show, id: @user.id, notice: 'User was successfully created.', locale: I18n.locale }
         format.json { render :show, status: :created, location: @user }
       else
-        format.html { render :new }
+        format.html { render :new, alert: t('reg.bad_data')+@user.errors.full_messages }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -58,9 +58,15 @@ class UsersController < ApplicationController
     end
   end
   
+  def redirect_logged_in
+    if logged_in?
+      redirect_to root_path
+    end
+  end
+  
   private
     def set_user
-      @user = User.find(params[:id])
+      @user = User.find(params[:id] || current_user.id)
     end
 
     def user_params

@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  
   def new
     @notice = params[:notice]
   end
@@ -9,7 +10,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_path
     else
-      redirect_to root_path, alert: t('session.wrong_credentials')
+      redirect_to login_path, alert: t('session.wrong_credentials')
     end
   end
 

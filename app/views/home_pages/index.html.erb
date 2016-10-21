@@ -1,10 +1,16 @@
 <div class="container">
   <div class="jumbotron">
-    <h1>Witaj mieszkańcu.</h1>
-    <p>Zauważyłeś jakiś problem w naszym mieście? Nie czekaj i nie pozostań obojętnym!</p>
-    <p>Załóż konto już dziś, zgłoś problem, a my zajmiemy się ręsztą. Dbaj o swoje miasto.</p>
-    <%= link_to :login do %>
-      <button type="button" class="btn btn-lg btn-success">Zaloguj się lub zarejestruj</button>
+    <% if !logged_in? %>
+      <h1>Witaj mieszkańcu.</h1>
+      <p>Zauważyłeś jakiś problem w naszym mieście? Nie czekaj i nie pozostań obojętnym!</p>
+      <p>Załóż konto już dziś, zgłoś problem, a my zajmiemy się ręsztą. Dbaj o swoje miasto.</p>
+      <%= link_to :login do %>
+        <button type="button" class="btn btn-lg btn-success">Zaloguj się lub zarejestruj</button>
+      <% end %>
+    <% else %>
+      <h1>Zgłoszenia</h1>
+      <p><strong style="color: #C04442;">5 zgłoszeń problemów</strong> nie zostało zażegnanych. <br>
+      <button type="button" class="btn btn-primary" style="margin-top: 15px;">Przejdź do zgłoszeń</button>
     <% end %>
   </div>
 </div>

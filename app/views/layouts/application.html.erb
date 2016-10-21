@@ -14,6 +14,7 @@
     <%= content_for?(:header) ? yield(:header) : (render template: "layouts/header") %>
   </header>
   <div class="container-fluid" id="entrance">
+    <p><%= flash[:alert] %></p>
     <section id="content">
       <%= content_for?(:content) ? yield(:content) : yield %>
     </section>
