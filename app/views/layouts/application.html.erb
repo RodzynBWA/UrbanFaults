@@ -3,7 +3,7 @@
 <head>
   <title><%= t('.title') %></title>
   <meta charset="utf-8">
-  <meta name="author" content="Dawid 'Rodzyn' Tomas, Lukas Levvy">
+  <meta name="author" content="Dawid 'Rodzyn' Tomas, Tomek Bryliński, Karol Krajewski">
   <meta name="description" content="<%= t('.desc') %>">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -13,9 +13,11 @@
   <header id="header" class="">
     <%= content_for?(:header) ? yield(:header) : (render template: "layouts/header") %>
   </header>
-  <section id="content">
-    <%= content_for?(:content) ? yield(:content) : yield %>
-  </section>
+  <div class="container-fluid" id="entrance">
+    <section id="content">
+      <%= content_for?(:content) ? yield(:content) : yield %>
+    </section>
+  </div>
   <footer id="footer">
     <%= content_for?(:footer) ? yield(:footer) : (render template: "layouts/footer") %>
   </footer>

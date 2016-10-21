@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/user/:id' => 'users#show', as: :show_profile
   get '/user/:id' => 'users#edit', as: :edit_profile
   resources :users, only: [:create, :update]
+  get 'forgot_pwd' => 'users#forgot_pwd', as: :forgot_pwd
   
   get 'research' => "reports#index"
   resources :reports, only: [:new, :create, :show, :edit]

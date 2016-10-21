@@ -7,13 +7,9 @@ class SessionsController < ApplicationController
     @user = User.where(email: params[:session][:email]).take
     if @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
-      session[:last_login] = @user.last_login
-      session[:last_ip] = @user.last_ip
-      @user.touch(:last_login)
-      @user.update_attribute(:last_ip, request.remote_ip)
       redirect_to root_path
     else
-      redirect_to root_path, alert: "Bad mail/password!"
+      redirect_to root_path, alert: t('session.wrong_credentials')
     end
   end
 

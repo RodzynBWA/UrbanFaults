@@ -6,12 +6,20 @@ pl:
         few: Użytkownicy
         other: Użytkowników
         many: Użytkowników
+      report:
+        one: Raport
+        few: Raporty
+        other: Raporty
+        many: Raportów
     attributes:
       user:
         email: E-mail
         first_name: Imię
         last_name: Nazwisko
         password: Hasło
+        city: Miasto
+      report:
+        name: Tytuł
     errors:
       messages:
         record_invalid: 'Negatywne sprawdzenie poprawności: %{errors}'
@@ -25,10 +33,18 @@ pl:
     header:
       domain: MiejskieUsterki.pl
       home: Strona główna
+      login: Zaloguj się
     footer: 
+      domain: MiejskieUsterki.pl
         
   users:
-    
+    new:
+      
+  sessions:
+    new:
+      login: Zaloguj
+      forgot_pwd: Przypomnij hasło
+  
   date:
     abbr_day_names:
     - nie
@@ -200,6 +216,10 @@ pl:
       create: Utwórz %{model}
       submit: Zapisz %{model}
       update: Aktualizuj %{model}
+    placeholder:
+      session:
+        email: E-mail
+        password: Hasło
   number:
     currency:
       format:

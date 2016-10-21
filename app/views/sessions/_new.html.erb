@@ -1,24 +1,10 @@
-<div id="login_modal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="login">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      	<h1 class="login-heading">
-      	  <strong><%= t('.welcome') %></strong> 
-      	  <%= t('.please') %>
-      	</h1>
-        <%= form_for(:session, url: login_path) do |f| %>
-      	  <div class="input-group">
-            <%= f.email_field :email, :placeholder => t('.email'), :required => "required", :class => "input-txt" %>
-          </div>
-          <div class="input-group">
-            <%= f.password_field :password, :placeholder =>  t('.password'), :required => "required", :class => "input-txt" %>
-         </div>
-          <div class="login-footer">
-            <%= f.submit t('.login'), :class => "btn btn-primary btn--right" %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
+<div class="login-form">
+  <h2>Logowanie</h2>
+  <p style="padding: 10px 0;">Podaj swoje dane, aby się zalogować</p>
+  <%= form_for(:session, url: login_path, :remote => true) do |f| %>
+    <%= f.email_field :email, :placeholder => true, :required => "required", :class => "form-control" %>
+    <%= f.password_field :password, :placeholder =>  true, :required => "required", :class => "form-control" %>
+    <%= link_to t('.forgot_pwd'), forgot_pwd_path, :class => "forgot_pwd_href" %>
+    <%= f.submit t('.login'),id: "login_btn", :class => "btn btn-lg btn-success pull-right" %>
+  <% end %>
 </div>
