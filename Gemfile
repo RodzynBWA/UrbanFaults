@@ -13,6 +13,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jquery-modal-rails'
 gem 'spinjs-rails'
+gem 'rails-jquery-autocomplete'
 
 gem 'bcrypt', '~> 3.1.11'
 gem 'figaro'

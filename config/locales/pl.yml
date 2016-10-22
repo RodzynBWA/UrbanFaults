@@ -29,17 +29,20 @@ pl:
           has_one: Nie może zostać usunięte, gdyż istnieje zależny od niego %{record}
   layouts:
     application:
-      title: Miejskie Usterki
+      title: Miejskie Problemy
       desc: do napisania ....
     header:
-      domain: MiejskieUsterki.pl
+      domain: MiejskieProblemy.pl
       home: Strona główna
+      browse_reports: Przeglądaj problemy
+      new_problem: Zgłoś problem
       login: Zaloguj się
       logout: Wyloguj
       profile: Pokaż Profil
       welcome: Witaj
+      users_list: Lista użytkowników
     footer: 
-      domain: MiejskieUsterki.pl
+      domain: MiejskieProblemy.pl
         
   users:
     new:
@@ -50,6 +53,13 @@ pl:
     new:
       login: Zaloguj
       forgot_pwd: Przypomnij hasło
+      
+  session:
+    wrong_credentials: Nieprawidłowe dane logowania. Spróbuj ponownie.
+    
+  admin:
+    users:
+      users_managment: Zarządzanie użytkownikami serwisu
   
   date:
     abbr_day_names:

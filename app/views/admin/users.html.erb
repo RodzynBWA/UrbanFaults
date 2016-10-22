@@ -1,0 +1,112 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 col-lg-12">
+      <h1><%= t('.users_managment') %></h1>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <td><h4 style="font-weight: bold;">Imię i nazwisko</h4></td>
+            <td><h4 style="font-weight: bold;">Rola</h4></td>
+            <td class="pull-right"><h4 style="font-weight: bold;">Akcje</h4></td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @user.each do |u| %>
+            <tr>
+              <td><h4><%= u.first_name %> <%= u.last_name %></h4></td>  
+              <td>
+                <h4>
+                  <% if u.is_admin == true %>
+                    <%= 'Administrator' %>
+                  <% else %>
+                    <%= 'Użytkownik' %>
+                  <% end %>
+                </h4>
+              </td>
+              <td>
+                <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal_<%= u.id %>_user_view">Zobacz</button>
+                <button class="btn btn-success pull-right" data-toggle="modal" data-target="#modal_<%= u.id %>_user_perms">Zmień uprawnienia</button>
+                <button class="btn btn-danger pull-right" data-toggle="modal" data-target="#modal_<%= u.id %>_user_delete">Usuń</button>
+                <% if u.is_admin != true %>
+                  <button class="btn btn-default pull-right" data-toggle="modal" data-target="#modal_<%= u.id %>_user_ban">Zbanuj</button>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div id="modals">
+  <% @user.each do |um| %>
+    <div class="user_<%= um.id %>">
+      <!-- Information modal !-->
+      <div class="modal fade" tabindex="-1" id="modal_<%= um.id %>_user_view" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Informacje o użytkowniku</h4>
+            </div>
+            <div class="modal-body">
+                <p>Imię i nazwisko: <%= um.first_name %> <%= um.last_name %></p>
+                <p>E-mail: <%= um.email %></p>
+                <p>Miejscowość: <%= um.city %></p>                    
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Permission modal !-->
+      <div class="modal fade" tabindex="-1" id="modal_<%= um.id %>_user_perms" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Zmiana uprawnień użytkownika: <%= um.first_name %> <%= um.last_name %></h4>
+            </div>
+            <div class="modal-body">
+              <form action="#" name="confirmation_perms">
+                <select class="form-control">
+                  <option>Użytkownik</option>
+                  <option>Administrator</option>
+                </select>
+              </form>                    
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success" form="confirmation">Potwiedź</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Remove modal !-->
+      <div class="modal fade" tabindex="-1" id="modal_<%= um.id %>_user_delete" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Potwierdzenie</h4>
+            </div>
+            <div class="modal-body">
+              <p>Czy chcesz usunąć użytkownika: <%= um.first_name %> <%= um.last_name %></p>
+              <form action="#" name="confirmation_remove">
+                <select class="form-control">
+                  <option>Tak</option>
+                  <option>Nie</option>
+                </select>
+              </form>                  
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success" form="confirmation">Potwiedź</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -13,6 +13,12 @@
 
 ActiveRecord::Schema.define(version: 20161019175825) do
 
+  create_table "cities", force: :cascade do |t|
+    t.string   "name",       limit: 255, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "report_categories", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false
     t.datetime "created_at",             null: false
@@ -28,11 +34,13 @@ ActiveRecord::Schema.define(version: 20161019175825) do
     t.string   "image",              limit: 255
     t.string   "ip",                 limit: 255, null: false
     t.integer  "user_id",            limit: 4,   null: false
+    t.integer  "city_id",            limit: 4,   null: false
     t.integer  "report_category_id", limit: 4,   null: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
   end
 
+  add_index "reports", ["city_id"], name: "index_reports_on_city_id", using: :btree
   add_index "reports", ["report_category_id"], name: "index_reports_on_report_category_id", using: :btree
   add_index "reports", ["user_id"], name: "index_reports_on_user_id", using: :btree
 
@@ -47,6 +55,7 @@ ActiveRecord::Schema.define(version: 20161019175825) do
     t.datetime "updated_at",                                  null: false
   end
 
+  add_foreign_key "reports", "cities"
   add_foreign_key "reports", "report_categories"
   add_foreign_key "reports", "users"
 end

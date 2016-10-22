@@ -10,6 +10,7 @@ class CreateReports < ActiveRecord::Migration
       t.string :ip, null: false, unique: false
       
       t.references :user, index: true, foreign_key: true, null: false, unique: false
+      t.references :city, index: true, foreign_key: true, null: false, unique: false
       t.references :report_category, index: true, foreign_key: true, null: false, unique: false
 
       t.timestamps null: false

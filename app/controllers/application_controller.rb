@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, :alert => t('errors.messages.not_logged_in') unless current_user
   end
   
+  def require_admin
+    redirect_to root_path, :alert => t('errors.messages.not_logged_in') unless is_admin?
+  end
+  
   def is_admin?
     return false if current_user == nil
     return current_user.is_admin

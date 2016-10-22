@@ -2,8 +2,8 @@
   <h2>Logowanie</h2>
   <p style="padding: 10px 0;">Podaj swoje dane, aby się zalogować</p>
   <%= form_for(:session, url: login_path, :remote => true) do |f| %>
-    <%= f.email_field :email, :placeholder => true, :required => "required", :class => "form-control" %>
-    <%= f.password_field :password, :placeholder =>  true, :required => "required", :class => "form-control" %>
+    <%= f.email_field :email, :placeholder => true, :required => "required", :class => "form-control", :style => "margin-bottom: 10px;"  %>
+    <%= f.password_field :password, :placeholder =>  true, :required => "required", :class => "form-control", :style => "margin-bottom: 10px;" %>
     <%= link_to t('.forgot_pwd'), forgot_pwd_path, :class => "forgot_pwd_href" %>
     <%= f.submit t('.login'), id: "login_btn", :class => "btn btn-lg btn-success pull-right" %>
   <% end %>

@@ -1,12 +1,15 @@
 class AdminController < ApplicationController
   before_action :require_user
-  before_action :is_admin?
+  before_action :require_admin
   before_action :set_user
   
-  def index
-    
+  def users
+    @user = User.all
   end
   
+  def reports
+    
+  end
   
   private
     def set_user

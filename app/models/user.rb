@@ -7,6 +7,6 @@ class User < ActiveRecord::Base
     validates :last_name, presence: true, uniqueness: false, length: { maximum: 50 }
     validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX,  on: :create }
     validates :password_digest, presence: true, uniqueness: false
-    validates :city, presence: true, uniqueness: false, length: { maximum: 40 }
+    validates :city, presence: true, uniqueness: false
 
 end
