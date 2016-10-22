@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
     has_secure_password validations: false
     VALID_EMAIL_REGEX = /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-    
+    belongs_to :city
     
     validates :first_name, presence: true, uniqueness: false, length: { maximum: 30 }
     validates :last_name, presence: true, uniqueness: false, length: { maximum: 50 }

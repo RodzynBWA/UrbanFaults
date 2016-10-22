@@ -13,24 +13,12 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.text_field :first_name, placeholder: true, class: "form-control" %>
-  </div>
-  <div class="field">
-    <%= f.text_field :last_name, placeholder: true, class: "form-control" %>
-  </div>
-  <div class="field">
-    <%= f.email_field :email, placeholder: true, class: "form-control" %>
-  </div>
-  <div class="field">
-    <%= f.text_field :city, placeholder: true, class: "form-control" %>
-  </div>
-  <div class="field">
-    <%= f.password_field :password, placeholder: true, class: "form-control" %>
-  </div>
-  <div class="field">
-    <%= f.password_field :password_confirmation, placeholder: true, class: "form-control" %>
-  </div>
+  <%= f.text_field :first_name, placeholder: true, class: "form-control" %>
+  <%= f.text_field :last_name, placeholder: true, class: "form-control" %>
+  <%= f.email_field :email, placeholder: true, class: "form-control" %>
+  <%= f.text_field :city, placeholder: true, class: "form-control" %>
+  <%= f.password_field :password, placeholder: true, class: "form-control" %>
+  <%= f.password_field :password_confirmation, placeholder: true, class: "form-control" %>
   <div class="actions">
     <%= f.submit t('.register'), :class => "btn btn-lg btn-success pull-right" %>
   </div>

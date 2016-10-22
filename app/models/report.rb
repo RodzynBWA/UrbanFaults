@@ -7,7 +7,7 @@ class Report < ActiveRecord::Base
   validates :street, presence: true, uniqueness: false
   validates :house, presence: false, uniqueness: false
   validates :short_place_desc, presence: false, uniqueness: false
-  validates :desc, presence: true, uniqueness: false
+  validates :descr, presence: true, uniqueness: false
   validates :image, presence: false, uniqueness: false
   validates :ip, presence: true, uniqueness: false
   

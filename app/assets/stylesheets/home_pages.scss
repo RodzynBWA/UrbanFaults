@@ -52,4 +52,12 @@ body {
         transition: all 300ms;
     }
   }
+  
+  .stick-footer {
+    min-height: calc(92vh - 44px);
+  }
+  
+  #footer {
+    height: 52px;
+  }
 }

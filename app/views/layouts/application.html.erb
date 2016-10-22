@@ -9,29 +9,29 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-  <header id="header" class="">
-    <%= content_for?(:header) ? yield(:header) : (render template: "layouts/header") %>
-  </header>
-  <div class="container">
-    <% if flash[:alert] %>
-      <div class="row alert alert-danger">
-        <p><%= flash[:alert] %></p>
-      </div>
-    <% end %>
-    <% if flash[:notice] %>
-      <div class="row alert alert-success">
-        <p><%= flash[:success] %></p>
-      </div>
-    <% end %>
-  </div>
-  <div class="container-fluid">
-    <div class="row">
-        <%= content_for?(:content) ? yield(:content) : yield %>
+  <body>
+    <header id="header" class="">
+      <%= content_for?(:header) ? yield(:header) : (render template: "layouts/header") %>
+    </header>
+    <div class="container">
+      <% if flash[:alert] %>
+        <div class="row alert alert-danger">
+          <p><%= flash[:alert] %></p>
+        </div>
+      <% end %>
+      <% if flash[:notice] %>
+        <div class="row alert alert-success">
+          <p><%= flash[:success] %></p>
+        </div>
+      <% end %>
     </div>
-  </div>
-  <footer id="footer">
-    <%= content_for?(:footer) ? yield(:footer) : (render template: "layouts/footer") %>
-  </footer>
-</body>
+    <div class="container-fluid stick-footer">
+      <div class="row">
+          <%= content_for?(:content) ? yield(:content) : yield %>
+      </div>
+    </div>
+    <footer id="footer">
+      <%= content_for?(:footer) ? yield(:footer) : (render template: "layouts/footer") %>
+    </footer>
+  </body>
 </html>

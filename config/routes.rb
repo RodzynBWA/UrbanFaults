@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   
   get '/research' => "reports#index"
   resources :reports do
-    get 'autocomplete_cities_cname', on: :collection
+    get 'autocomplete_city_cname', on: :collection
+    get 'autocomplete_report_category_name', on: :collection
   end
   resources :reports, only: [:new, :create, :show, :edit]
   

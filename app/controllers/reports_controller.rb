@@ -1,9 +1,14 @@
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy]
   
-  def autocomplete_cities_cname
-    ca = City.all.order(:name)
+  def autocomplete_city_cname
+    ca = City.where("name LIKE '%#{params[:term]}%'").order(:name)
     render :json => ca.map { |city| {id: city.id, label: city.cname, value: city.cname} }
+  end
+  
+  def autocomplete_report_category_name
+    ca = ReportCategory.where("name LIKE '%#{params[:term]}%'").order(:name)
+    render :json => ca.map { |cat| {id: cat.id, label: cat.name, value: cat.name} }
   end
 
   # GET /reports
@@ -74,6 +79,6 @@ class ReportsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def report_params
-      params.require(:report).permit(:title, :report_category_id, :street, :house, :short_place_desc, :desc, :image, :user_id, :ip)
+      params.require(:report).permit(:title, :report_category_id, :city_id, :street, :house, :short_place_desc, :descr, :image)
     end
 end

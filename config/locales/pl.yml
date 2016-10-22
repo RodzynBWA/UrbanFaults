@@ -236,6 +236,9 @@ pl:
       session:
         email: E-mail
         password: Hasło
+      report:
+        title: Tytuł
+        
   number:
     currency:
       format:

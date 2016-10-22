@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20161019175825) do
     t.string   "street",             limit: 255, null: false
     t.string   "house",              limit: 255
     t.string   "short_place_desc",   limit: 255
-    t.string   "desc",               limit: 255, null: false
+    t.string   "descr",              limit: 255, null: false
     t.string   "image",              limit: 255
     t.string   "ip",                 limit: 255, null: false
     t.integer  "user_id",            limit: 4,   null: false
@@ -46,16 +46,19 @@ ActiveRecord::Schema.define(version: 20161019175825) do
 
   create_table "users", force: :cascade do |t|
     t.string   "email",           limit: 255,                 null: false
-    t.string   "city",            limit: 255,                 null: false
     t.string   "first_name",      limit: 255,                 null: false
     t.string   "last_name",       limit: 255,                 null: false
     t.string   "password_digest", limit: 255,                 null: false
     t.boolean  "is_admin",                    default: false, null: false
+    t.integer  "city_id",         limit: 4,                   null: false
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
   end
 
+  add_index "users", ["city_id"], name: "index_users_on_city_id", using: :btree
+
   add_foreign_key "reports", "cities"
   add_foreign_key "reports", "report_categories"
   add_foreign_key "reports", "users"
+  add_foreign_key "users", "cities"
 end

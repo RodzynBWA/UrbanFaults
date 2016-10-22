@@ -5,7 +5,7 @@ class CreateReports < ActiveRecord::Migration
       t.string :street, null: false, unique: false
       t.string :house, null: true, unique: false
       t.string :short_place_desc, null: true, unique: false
-      t.string :desc, null: false, unique: false
+      t.string :descr, null: false, unique: false
       t.string :image, null: true, unique: false
       t.string :ip, null: false, unique: false
       
