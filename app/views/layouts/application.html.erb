@@ -14,10 +14,21 @@
     <%= content_for?(:header) ? yield(:header) : (render template: "layouts/header") %>
   </header>
   <div class="container-fluid" id="entrance">
-    <p><%= flash[:alert] %></p>
-    <section id="content">
-      <%= content_for?(:content) ? yield(:content) : yield %>
-    </section>
+    <% if flash[:alert] %>
+      <div class="row alert alert-danger">
+        <p><%= flash[:alert] %></p>
+      </div>
+    <% end %>
+    <% if flash[:notice] %>
+      <div class="row alert alert-success">
+        <p><%= flash[:success] %></p>
+      </div>
+    <% end %>
+    <div class="row">
+      <section id="content">
+        <%= content_for?(:content) ? yield(:content) : yield %>
+      </section>
+    </div>
   </div>
   <footer id="footer">
     <%= content_for?(:footer) ? yield(:footer) : (render template: "layouts/footer") %>

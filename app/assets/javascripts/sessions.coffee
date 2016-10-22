@@ -3,37 +3,38 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 lbt = '#login_btn'
+rbt = '#reg_btn'
+
 efi = '#session_email'
 pfi = '#session_password'
+eufi = '#user_email'
+pufi = '#user_password'
 
-unlock_login_button = () ->
-  console.log 'Init'
+lock_buttons = () ->
+  console.log 'lock'
   $(lbt).attr('disabled', true)
-  $(efi).keyup () ->
-    unlock_event()
+  $(rbt).attr('disabled', true)
+  add_events(efi, pfi, lbt)
+  add_events(pfi, efi, lbt)
+  add_events(eufi, pufi, rbt)
+  add_events(pufi, eufi, rbt)
+  
+add_events = (v1, v2, i) ->
+  $(v1).keyup () ->
+    unlock_event(v1, v2, i)
     return
-  $(pfi).keyup () ->
-    unlock_event()
+  $(v1).blur () ->
+    unlock_event(v1, v2, i)
     return
-  $(efi).blur () ->
-    unlock_event()
-    return
-  $(pfi).blur () ->
-    unlock_event()
-    return
-  $(efi).on('change', () ->
-    unlock_event()
-    return
-  )
-  $(pfi).on('change', () ->
-    unlock_event()
+  $(v1).on('change', () ->
+    unlock_event(v1, v2, i)
     return
   )
   
-unlock_event = () ->
-  if($(efi).val().length != 0 && $(pfi).val().length != 0)
-    $(lbt).attr('disabled', false)          
+unlock_event = (v1, v2, o) ->
+  if($(v1).val().length != 0 && $(v2).val().length != 0)
+    $(o).attr('disabled', false)          
   else
-    $(lbt).attr('disabled',true)
+    $(o).attr('disabled',true)
   
-$(document).ready unlock_login_button
+$(document).ready lock_buttons

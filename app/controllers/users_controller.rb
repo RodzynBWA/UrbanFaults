@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    
   end
 
   # GET /users/new
@@ -22,13 +23,14 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    up = user_params
+    @user = User.new(up)
     respond_to do |format|
       if @user.save
-        format.html { redirect_to controller: :users, action: :show, id: @user.id, notice: 'User was successfully created.', locale: I18n.locale }
+        format.html { redirect_to controller: :users, action: :show, id: @user.id, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
-        format.html { render :new, alert: t('reg.bad_data')+@user.errors.full_messages }
+        format.html { render :new, alert: t('reg.bad_data') + @user.errors.full_messages.join(" ") }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
