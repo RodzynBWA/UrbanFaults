@@ -1,5 +1,10 @@
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy]
+  
+  def autocomplete_cities_cname
+    ca = City.all.order(:name)
+    render :json => ca.map { |city| {id: city.id, label: city.cname, value: city.cname} }
+  end
 
   # GET /reports
   # GET /reports.json

@@ -16,7 +16,7 @@
         <%= f.text_field :title, placeholder: true, class: "form-control" %>
         <label for="city">Wybierz miasto:</label>
         <div class="field">
-        <%= f.collection_select(:city_id, City.all, :id, :cname, {}, {class: 'form-control'}) %>
+        <%= f.autocomplete_field(:city, autocomplete_cities_cname_reports_path, {class: 'form-control'}) %>
         </div>
         <div class="field">
           <%= f.text_field :report_category_id %>

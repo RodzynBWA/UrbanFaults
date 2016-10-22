@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get '/forgot_pwd' => 'users#forgot_pwd', as: :forgot_pwd
   
   get '/research' => "reports#index"
+  resources :reports do
+    get 'autocomplete_cities_cname', on: :collection
+  end
   resources :reports, only: [:new, :create, :show, :edit]
   
   get '/users_list' => 'admin#users', as: :admin_users_list
