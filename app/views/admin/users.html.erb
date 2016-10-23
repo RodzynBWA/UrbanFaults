@@ -24,11 +24,15 @@
                 </h4>
               </td>
               <td>
-                <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal_<%= u.id %>_user_view">Zobacz</button>
-                <button class="btn btn-success pull-right" data-toggle="modal" data-target="#modal_<%= u.id %>_user_perms">Zmień uprawnienia</button>
-                <button class="btn btn-danger pull-right" data-toggle="modal" data-target="#modal_<%= u.id %>_user_delete">Usuń</button>
-                <% if u.is_admin != true %>
-                  <button class="btn btn-default pull-right" data-toggle="modal" data-target="#modal_<%= u.id %>_user_ban">Zbanuj</button>
+                <%= button_tag t('.view'), {class: "btn btn-primary pull-right", data: {toggle: 'modal', target: '#modal_'+u.id.to_s+'_user_view'}} %>
+                <%= button_tag t('.perms'), {class: "btn btn-success pull-right", data: {toggle: 'modal', target: '#modal_'+u.id.to_s+'_user_perms'}} %>
+                <%= button_tag t('.delete'), {class: "btn btn-danger pull-right", data: {toggle: 'modal', target: '#modal_'+u.id.to_s+'_user_delete'}} %>
+                <% if !u.is_admin %>
+                  <% if u.is_banned %>
+                    <%= button_tag t('.unban'), {remote: true}, {class: "btn btn-default pull-right", data: {toggle: 'modal', target: '#modal_'+u.id.to_s+'_user_unban'}} %>
+                  <% else %>
+                    <%= button_tag t('.ban'), {class: "btn btn-default pull-right", data: {toggle: 'modal', target: '#modal_'+u.id.to_s+'_user_ban'}} %>
+                  <% end %>
                 <% end %>
               </td>
             </tr>
@@ -52,7 +56,7 @@
             <div class="modal-body">
                 <p>Imię i nazwisko: <%= um.first_name %> <%= um.last_name %></p>
                 <p>E-mail: <%= um.email %></p>
-                <p>Miejscowość: <%= um.city %></p>                    
+                <p>Miejscowość: <%= um.city.cname %></p>                    
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>

@@ -1,6 +1,8 @@
 <div class="container" id="content">
   <div class="row">
+    <% divise_per_2 = 0 %>
     <% @reports.each do |report| %>
+      <% divise_per_2 += 1 %>
       <div class="col-md-2 col-lg-2">
         <div class="thumbnail">
             <h2 class="report_date"><%= report.created_at.strftime('%d.%m.%Y') %></h2>
@@ -21,6 +23,10 @@
           </div>
         </div>
       </div>
+      <% if(divise_per_2 != 0 && divise_per_2 % 2 == 0) %>
+        </div>
+        <div class="row">
+      <% end %>
     <% end %>
   </div>
 </div>

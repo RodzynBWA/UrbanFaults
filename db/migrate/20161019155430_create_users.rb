@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :last_name, null: false, unique: false
       t.string :password_digest, null: false, unique: false
       t.boolean :is_admin, null: false, unique: false, default: false
+      t.boolean :is_banned, null: false, unique: false, default: false
 
       t.references :city, index: true, foreign_key: true, null: false, unique: false
       

@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20161019175825) do
     t.string   "last_name",       limit: 255,                 null: false
     t.string   "password_digest", limit: 255,                 null: false
     t.boolean  "is_admin",                    default: false, null: false
+    t.boolean  "is_banned",                   default: false, null: false
     t.integer  "city_id",         limit: 4,                   null: false
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false

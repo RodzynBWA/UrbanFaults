@@ -13,12 +13,12 @@
     </div>
   <% end %>
 
-  <%= f.text_field :first_name, placeholder: true, class: "form-control" %>
-  <%= f.text_field :last_name, placeholder: true, class: "form-control" %>
-  <%= f.email_field :email, placeholder: true, class: "form-control" %>
-  <%= f.text_field :city, placeholder: true, class: "form-control" %>
-  <%= f.password_field :password, placeholder: true, class: "form-control" %>
-  <%= f.password_field :password_confirmation, placeholder: true, class: "form-control" %>
+  <%= f.text_field :first_name, placeholder: true, class: "form-control", style: "margin-bottom: 10px;" %>
+  <%= f.text_field :last_name, placeholder: true, class: "form-control", style: "margin-bottom: 10px;" %>
+  <%= f.email_field :email, placeholder: true, class: "form-control", style: "margin-bottom: 10px;" %>
+  <%= f.autocomplete_field :city, autocomplete_city_cname_reports_path, {class: 'form-control', style: "margin-bottom: 10px;", placeholder: true} %>
+  <%= f.password_field :password, placeholder: true, class: "form-control", style: "margin-bottom: 10px;" %>
+  <%= f.password_field :password_confirmation, placeholder: true, class: "form-control", style: "margin-bottom: 10px;" %>
   <div class="actions">
     <%= f.submit t('.register'), :class => "btn btn-lg btn-success pull-right" %>
   </div>

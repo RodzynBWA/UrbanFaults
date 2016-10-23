@@ -43,8 +43,14 @@ pl:
       users_list: Lista użytkowników
     footer: 
       domain: MiejskieProblemy.pl
-        
+      
+  home_pages:
+    index:
+      login_or_register: Zaloguj się lub zarejestruj
+      go_to_research: Przejdź do zgłoszeń
   users:
+    create:
+      user_created: Rejestracja pomyślna!
     new:
     reg:
       register: Zarejestruj
@@ -60,6 +66,15 @@ pl:
   admin:
     users:
       users_managment: Zarządzanie użytkownikami serwisu
+      ban: Zbanuj
+      unban: Odbanuj
+      view: Zobacz
+      perms: Zmień ustawienia
+      delete: Usuń
+      
+  reports:
+    form:
+      send_report: Wyślij zgłoszenie
   
   date:
     abbr_day_names:

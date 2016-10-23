@@ -4,6 +4,11 @@ class UsersController < ApplicationController
   before_action :require_user, only: [:show, :edit, :update, :destroy]
   before_action :redirect_logged_in, only: [:new]
   
+  def autocomplete_city_cname
+    ca = City.where("name LIKE '%#{params[:term]}%'").order(:name)
+    render :json => ca.map { |city| {id: city.id, label: city.cname, value: city.cname} }
+  end
+  
   # GET /users/1
   # GET /users/1.json
   def show
@@ -25,9 +30,20 @@ class UsersController < ApplicationController
   def create
     up = user_params
     @user = User.new(up)
+    cn = params[:user][:city]
+    if cn.length != 0
+      c = City.where(name: cn.downcase).take
+      if c == nil
+        c = City.create(name: cn)
+      end
+      @user.city = c
+    end
     respond_to do |format|
       if @user.save
-        format.html { redirect_to controller: :users, action: :show, id: @user.id, notice: 'User was successfully created.' }
+        format.html { 
+          session[:user_id] = @user.id
+          redirect_to home_path, notice: t('.user_created') 
+        }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, alert: t('reg.bad_data') + @user.errors.full_messages.join(" ") }
@@ -41,7 +57,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to @user, notice: t('.user_updated') }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -55,7 +71,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to users_url, notice: t('.user_removed') }
       format.json { head :no_content }
     end
   end
@@ -72,6 +88,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :city)
+      params.require(:user).permit(:first_name, :last_name, :email, :password)
     end
 end

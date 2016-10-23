@@ -1,7 +1,5 @@
 class HomePagesController < ApplicationController
-    
-    def index
-        
-    end
-    
+  def index
+    @reports = Report.all
+  end
 end
