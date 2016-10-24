@@ -21,6 +21,11 @@ pl:
         city: Miasto
       report:
         name: Tytuł
+        city: Miasto
+        street: Ulica
+        house: Numer domu (Nieobowiązkowe)
+        short_place_desc: Krótki opis miejsca występowania problemu
+        descr: Opis problemu
     errors:
       messages:
         record_invalid: 'Negatywne sprawdzenie poprawności: %{errors}'
@@ -48,6 +53,7 @@ pl:
     index:
       login_or_register: Zaloguj się lub zarejestruj
       go_to_research: Przejdź do zgłoszeń
+      more_details: Więcej szczegółów
   users:
     create:
       user_created: Rejestracja pomyślna!
@@ -66,13 +72,25 @@ pl:
   admin:
     users:
       users_managment: Zarządzanie użytkownikami serwisu
+      name: Imię i nazwisko
+      role: Rola
+      actions: Dostępne akcje
       ban: Zbanuj
       unban: Odbanuj
       view: Zobacz
       perms: Zmień ustawienia
       delete: Usuń
+    reports:
+      new_problems: Nowe zgłoszenia
+      done_problems: Zgłoszenia zażegnane
+      report_name: Tytuł zgłoszenia
+      report_date: Data zgłoszenia
+      report_action: Dostępne akcje
+      view: Zobacz
       
   reports:
+    index:
+      more_details: Więcej szczegółów
     form:
       send_report: Wyślij zgłoszenie
   

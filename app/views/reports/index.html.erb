@@ -1,7 +1,7 @@
 <div class="container" id="content">
   <div class="row">
     <% divise_per_2 = 0 %>
-    <% @reports.each do |report| %>
+    <% @reports.order("created_at desc").each do |report| %>
       <% divise_per_2 += 1 %>
       <div class="col-md-2 col-lg-2">
         <div class="thumbnail">
@@ -14,12 +14,10 @@
           <div class="caption">
             <h3><%= report.title %></h3>
             <hr>
-            <span class="label label-primary">W trakcie poprawek</span>
+            <span class="label label-primary"><%= report.report_category.name %></span>
             <hr>
             <p class="text-justify"><%= report.descr %></p>
-            <%= link_to report do %>
-              <button type="button" class="btn btn-success">Więcej szczegółów</button>
-            <% end %>
+            <%= button_to t('.more_details'), report, class: "btn btn-success" %>
           </div>
         </div>
       </div>

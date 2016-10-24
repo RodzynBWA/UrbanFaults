@@ -11,6 +11,8 @@ c2 = City.create(name: 'Nowhere')
 
 t = User.create(email: 't@t.t', first_name: 'First', last_name: 'Laster', password: '1234', city: c1)
 a = User.create(email: 'a@t.t', first_name: 'Admino', last_name: 'Border', password: '1234', city: c2, is_admin: true)
+demo = User.create(email: 'demo@user.pl', first_name: 'Użytkownik', last_name: 'Zwykły', password: 'demo', city: c2,)
+demo_admin = User.create(email: 'demo@user2.pl', first_name: 'Użytkownik', last_name: 'Kolejny', password: 'demo', city: c1)
 
 rc1 = ReportCategory.create(name: 'Porządek w mieście')
 rc2 = ReportCategory.create(name: 'Problemy z elektrycznością')
@@ -23,6 +25,7 @@ r1 = Report.create(title: 'Awaria awarii',
                    descr: 'Lorem ipsum nic sie nie stalo', 
                    ip: '0.0.0.666', 
                    user: t, 
+                   report_image: '',
                    report_category: rc1)
 
 r2 = Report.create(title: 'Awaria oświetlenia', 
@@ -73,3 +76,4 @@ r7 = Report.create(title: 'Nieprzejezdna droga',
                    ip: '192.168.4.1', 
                    user: t, 
                    report_category: rc2)
+                   

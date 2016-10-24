@@ -37,10 +37,10 @@ class ReportsController < ApplicationController
         c = City.create(name: cn)
       end
       @report.city = c
+      
     end
     @report.ip = request.remote_ip
     @report.user = current_user
-    byebug
     respond_to do |format|
       if @report.save
         format.html { redirect_to @report, notice: 'Zgłoszenie zostało pomyślnie dodane!' }
@@ -75,6 +75,10 @@ class ReportsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def new_statement
+    
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -84,6 +88,6 @@ class ReportsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def report_params
-      params.require(:report).permit(:title, :report_category_id, :street, :house, :short_place_desc, :descr, :image)
+      params.require(:report).permit(:title, :report_category_id, :street, :house, :short_place_desc, :descr, :report_image)
     end
 end

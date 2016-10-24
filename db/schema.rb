@@ -11,9 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161019175825) do
+ActiveRecord::Schema.define(version: 20161024194148) do
 
   create_table "cities", force: :cascade do |t|
+    t.string   "name",       limit: 255, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "departments", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
@@ -31,8 +37,9 @@ ActiveRecord::Schema.define(version: 20161019175825) do
     t.string   "house",              limit: 255
     t.string   "short_place_desc",   limit: 255
     t.string   "descr",              limit: 255, null: false
-    t.string   "image",              limit: 255
+    t.string   "state",              limit: 255, null: false
     t.string   "ip",                 limit: 255, null: false
+    t.string   "report_image",       limit: 255
     t.integer  "user_id",            limit: 4,   null: false
     t.integer  "city_id",            limit: 4,   null: false
     t.integer  "report_category_id", limit: 4,   null: false
@@ -43,6 +50,20 @@ ActiveRecord::Schema.define(version: 20161019175825) do
   add_index "reports", ["city_id"], name: "index_reports_on_city_id", using: :btree
   add_index "reports", ["report_category_id"], name: "index_reports_on_report_category_id", using: :btree
   add_index "reports", ["user_id"], name: "index_reports_on_user_id", using: :btree
+
+  create_table "statements", force: :cascade do |t|
+    t.string   "title",         limit: 255, null: false
+    t.string   "content",       limit: 255, null: false
+    t.integer  "user_id",       limit: 4,   null: false
+    t.integer  "department_id", limit: 4,   null: false
+    t.integer  "report_id",     limit: 4,   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "statements", ["department_id"], name: "index_statements_on_department_id", using: :btree
+  add_index "statements", ["report_id"], name: "index_statements_on_report_id", using: :btree
+  add_index "statements", ["user_id"], name: "index_statements_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",           limit: 255,                 null: false
@@ -61,5 +82,8 @@ ActiveRecord::Schema.define(version: 20161019175825) do
   add_foreign_key "reports", "cities"
   add_foreign_key "reports", "report_categories"
   add_foreign_key "reports", "users"
+  add_foreign_key "statements", "departments"
+  add_foreign_key "statements", "reports"
+  add_foreign_key "statements", "users"
   add_foreign_key "users", "cities"
 end

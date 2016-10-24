@@ -7,8 +7,12 @@
         <%= button_to t('.login_or_register'), :login, {class: "btn btn-lg btn-success", method: :get} %>
       <% else %>
         <h1>Zgłoszenia</h1>
-        <p><strong style="color: #C04442;">5 zgłoszeń problemów</strong> nie zostało zażegnanych. <br>
+        <!-- <p><strong style="color: #C04442;">5 zgłoszeń problemów</strong> nie zostało zażegnanych. <br> !-->
+        <% if is_admin? %>
+          <%= button_to t('.go_to_research'), admin_manage_reports_path, {class: "btn btn-lg btn-success", method: :get} %>
+        <% else %>
         <%= button_to t('.go_to_research'), research_path, {class: "btn btn-lg btn-success", method: :get} %>
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -23,7 +27,7 @@
 <div class="container" id="content">
   <div class="row">
     <% divise_per_2 = 0 %>
-    <% @reports.take(4).each do |report| %>
+    <% @reports.order("created_at desc").take(4).each do |report| %>
       <% divise_per_2 += 1 %>
       <div class="col-md-2 col-lg-2">
         <div class="thumbnail">
@@ -36,12 +40,10 @@
           <div class="caption">
             <h3><%= report.title %></h3>
             <hr>
-            <span class="label label-primary">W trakcie poprawek</span>
+            <span class="label label-primary"><%= report.report_category.name %></span>
             <hr>
             <p class="text-justify"><%= report.descr %></p>
-            <%= link_to report do %>
-              <button type="button" class="btn btn-success">Więcej szczegółów</button>
-            <% end %>
+            <%= button_to t('.more_details'), report, class: "btn btn-success" %>
           </div>
         </div>
       </div>

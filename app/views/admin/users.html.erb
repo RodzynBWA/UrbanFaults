@@ -5,13 +5,13 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <td><h4 style="font-weight: bold;">Imię i nazwisko</h4></td>
-            <td><h4 style="font-weight: bold;">Rola</h4></td>
-            <td class="pull-right"><h4 style="font-weight: bold;">Akcje</h4></td>
+            <td><h4 style="font-weight: bold;"><%= t('.name') %></h4></td>
+            <td><h4 style="font-weight: bold;"><%= t('.role') %></h4></td>
+            <td class="pull-right"><h4 style="font-weight: bold;"><%= t('.actions') %></h4></td>
           </tr>
         </thead>
         <tbody>
-          <% @user.each do |u| %>
+          <% @users.each do |u| %>
             <tr>
               <td><h4><%= u.first_name %> <%= u.last_name %></h4></td>  
               <td>
@@ -29,9 +29,9 @@
                 <%= button_tag t('.delete'), {class: "btn btn-danger pull-right", data: {toggle: 'modal', target: '#modal_'+u.id.to_s+'_user_delete'}} %>
                 <% if !u.is_admin %>
                   <% if u.is_banned %>
-                    <%= button_tag t('.unban'), {remote: true}, {class: "btn btn-default pull-right", data: {toggle: 'modal', target: '#modal_'+u.id.to_s+'_user_unban'}} %>
+                    <%= button_tag t('.unban'), {remote: true}, {class: "btn btn-default pull-right btn_ban", id: "btn_unban_"+u.id.to_s, data: {toggle: 'modal', target: '#modal_'+u.id.to_s+'_user_unban'}} %>
                   <% else %>
-                    <%= button_tag t('.ban'), {class: "btn btn-default pull-right", data: {toggle: 'modal', target: '#modal_'+u.id.to_s+'_user_ban'}} %>
+                    <%= button_tag t('.ban'), {class: "btn btn-default pull-right btn_ban", id: "btn_ban_"+u.id.to_s, data: {toggle: 'modal', target: '#modal_'+u.id.to_s+'_user_ban'}} %>
                   <% end %>
                 <% end %>
               </td>
@@ -43,10 +43,10 @@
   </div>
 </div>
 <div id="modals">
-  <% @user.each do |um| %>
-    <div class="user_<%= um.id %>">
+  <% @users.each do |u| %>
+    <div class="user_<%= u.id %>">
       <!-- Information modal !-->
-      <div class="modal fade" tabindex="-1" id="modal_<%= um.id %>_user_view" role="dialog">
+      <div class="modal fade" tabindex="-1" id="modal_<%= u.id %>_user_view" role="dialog">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -54,9 +54,9 @@
                 <h4 class="modal-title">Informacje o użytkowniku</h4>
             </div>
             <div class="modal-body">
-                <p>Imię i nazwisko: <%= um.first_name %> <%= um.last_name %></p>
-                <p>E-mail: <%= um.email %></p>
-                <p>Miejscowość: <%= um.city.cname %></p>                    
+                <p>Imię i nazwisko: <%= u.first_name %> <%= u.last_name %></p>
+                <p>E-mail: <%= u.email %></p>
+                <p>Miejscowość: <%= u.city.cname %></p>                    
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
@@ -65,12 +65,12 @@
         </div>
       </div>
       <!-- Permission modal !-->
-      <div class="modal fade" tabindex="-1" id="modal_<%= um.id %>_user_perms" role="dialog">
+      <div class="modal fade" tabindex="-1" id="modal_<%= u.id %>_user_perms" role="dialog">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">Zmiana uprawnień użytkownika: <%= um.first_name %> <%= um.last_name %></h4>
+              <h4 class="modal-title">Zmiana uprawnień użytkownika: <%= u.first_name %> <%= u.last_name %></h4>
             </div>
             <div class="modal-body">
               <form action="#" name="confirmation_perms">
@@ -88,7 +88,7 @@
         </div>
       </div>
       <!-- Remove modal !-->
-      <div class="modal fade" tabindex="-1" id="modal_<%= um.id %>_user_delete" role="dialog">
+      <div class="modal fade" tabindex="-1" id="modal_<%= u.id %>_user_delete" role="dialog">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -96,7 +96,7 @@
               <h4 class="modal-title">Potwierdzenie</h4>
             </div>
             <div class="modal-body">
-              <p>Czy chcesz usunąć użytkownika: <%= um.first_name %> <%= um.last_name %></p>
+              <p>Czy chcesz usunąć użytkownika: <%= u.first_name %> <%= u.last_name %></p>
               <form action="#" name="confirmation_remove">
                 <select class="form-control">
                   <option>Tak</option>

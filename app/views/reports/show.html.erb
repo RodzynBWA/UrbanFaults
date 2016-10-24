@@ -2,9 +2,10 @@
   <div class="row">
     <div class="col-md-9 col-lg-9">
       <h2><%= @report.title %></h2>
-      <span class="label label-primary">Kategoria</span>
+      <span class="label label-primary"><%= @report.report_category.name %></span>
       <hr>
       <p style="margin: 25px 0;" class="text-justify"><%= @report.descr %></p>
+      <%= image_tag @report.report_image.url %>
       <div class="alert alert-success" role="alert">
         <h3><strong>Komunikat dotyczący problemu</strong></h3>
         <h6>Dodany przez: Halina Kowalska - Wydział nr 1</h6>
@@ -13,51 +14,9 @@
     </div>
     <div class="col-md-3 col-lg-3">
       <div class="thumbnail">
-        <span class="label label-success">Rozwiązany</span>
-        <h5>Dodany: 24.10.2016 o 13:27</h5>
-        <h5>Przez: Stefan Nowak</h5>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-12 col-lg-12">
-      <h1 style="font-weight: 500; padding: 30px 0;">PODOBNE PROBLEMY</h1>
-    </div>
-    <div class="col-md-2 col-lg-2">
-      <div class="thumbnail">
-        <h1>24.10.16</h1>
-      </div>
-    </div>
-    <div class="col-md-4 col-lg-4">
-      <div class="thumbnail">
-        <div class="caption">
-          <h3>Nieświecące latarnie przy ul. Piłsudskiego.</h3>
-          <hr>
-          <span class="label label-primary">W trakcie poprawek</span>
-          <hr>
-          <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus fuga neque dignissimos delectus, aliquam non. [...]</p>
-          <button type="button" class="btn btn-success">Więcej szczegółów</button>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-2 col-lg-2">
-      <div class="thumbnail">
-        <h1>22.10.16</h1>
-      </div>
-    </div>
-    <div class="col-md-4 col-lg-4">
-      <div class="thumbnail">
-        <div class="caption">
-          <h3>Złe oznakowanie.</h3>
-          <hr>
-          <span class="label label-primary">W trakcie poprawek</span>
-          <hr>
-          <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis voluptatum sed architecto! Quae, minus numquam. [...]</p>
-          <button type="button" class="btn btn-success">Więcej szczegółów</button>
-        </div>
+        <span class="label label-primary"><%= t 'reports.state.'+@report.state %></span>
+        <h5>Dodany: <%= @report.created_at %></h5>
+        <h5>Przez: <%= @report.user.first_name+' '+@report.user.last_name %></h5>
       </div>
     </div>
   </div>

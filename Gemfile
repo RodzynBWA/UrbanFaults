@@ -20,6 +20,7 @@ gem 'figaro'
 
 gem 'puma'
 
+gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
 gem 'turbolinks', '~> 5.0.0.beta'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc

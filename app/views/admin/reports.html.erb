@@ -1,45 +1,127 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 col-lg-12">
-      <h1>Niezażegnane problemy</h1>
+      <h1><%= t('.new_problems') %></h1>
+      <% if Report._new.count > 0 %>
         <table class="table table-hover">
           <thead>
             <tr>
-              <td><h4 style="font-weight: bold;">Nazwa problemu</h4></td>
-              <td class="pull-right"><h4 style="font-weight: bold;">Akcje</h4></td>
+              <td><h4 style="font-weight: bold;"><%= t('.report_name') %></h4></td>
+              <td><h4 style="font-weight: bold;"><%= t('.report_date') %></h4></td>
+              <td class="pull-right"><h4 style="font-weight: bold;"><%= t('.report_action') %></h4></td>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><h4>Śmieci na Górze Parkowej</h4></td>
-              <td>
-                <button class="btn btn-primary pull-right">Zobacz</button>
-                <button class="btn btn-default pull-right">Zmień status</button>
-                <button class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal">Wygłoś komunikat</button>
-                <button class="btn btn-danger pull-right">Usuń</button>
-              </td>
-            </tr>
+            <% Report._new.order("created_at desc").each do |report| %>
+              <tr>
+                <td><h4><%= report.title %></h4></td>
+                <td><h4><%= report.updated_at.strftime('%d.%m.%Y o %H:%M') %></h4></td>
+                <td>
+                  <%= button_to t('.view'), report, class: "btn btn-primary pull-right", method: :get %>
+                  <button class="btn btn-default pull-right" data-toggle="modal" data-target="#myModal2">Zmień status</button>
+                  <button class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal">Wygłoś komunikat</button>
+                  <button class="btn btn-danger pull-right">Usuń</button>
+                </td>
+              </tr>
+            <% end %>
           </tbody>
         </table>
-      <h1>Zażegnane problemy</h1>
+      <% else %>
+        <h2>Brak</h2>
+      <% end %>
+      <h1><%= t('.done_problems') %></h1>
+      <% if Report._done.count > 0 %>
         <table class="table table-hover">
           <thead>
             <tr>
-              <td><h4 style="font-weight: bold;">Nazwa problemu</h4></td>
-              <td class="pull-right"><h4 style="font-weight: bold;">Akcje</h4></td>
+              <td><h4 style="font-weight: bold;"><%= t('.report_name') %></h4></td>
+              <td><h4 style="font-weight: bold;"><%= t('.report_date') %></h4></td>
+              <td class="pull-right"><h4 style="font-weight: bold;"><%= t('.report_action') %></h4></td>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><h4>Dzikie wysypisko</h4></td>
-              <td>
-                <button class="btn btn-primary pull-right">Zobacz</button>
-                <button class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal">Edytuj komunikat</button>
-                <button class="btn btn-danger pull-right">Usuń</button>
-              </td>
-            </tr>
+            <% Report._done.each do |report| %>
+              <tr>
+                <td><h4><%= report.title %></h4></td>
+                <td><h4><%= report.updated_at %></h4></td>
+                <td>
+                  <%= button_to t('.view'), report, class: "btn btn-primary pull-right", method: :get %>
+                  <button class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal1">Edytuj komunikat</button>
+                  <button class="btn btn-danger pull-right">Usuń</button>
+                </td>
+              </tr>
+            <% end %>
           </tbody>
         </table>
+      <% else %>
+        <h2>Brak</h2>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Alert -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Komunikat</h4>
+      </div>
+      <% form_for @statement, url: new_statement_path do |f| %>
+        <div class="modal-body">
+          <%= f.text_area :content, {class: "form-control", placeholder: t('.statement_content'), id: "alert", style: "width:100%, resize: none"} %>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit t('.send'), class: "btn-success" %>
+          <%= button_tag t('.close'), {class: "btn btn-danger", data: {dismiss: "modal"}} %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Edit Alert -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Komunikat</h4>
+      </div>
+      <div class="modal-body">
+        <textarea class="form-control" id="alert" rows="10" style="width: 100%; resize: none;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit odit, consequatur distinctio, repellendus nulla maxime vero eligendi iste incidunt delectus, iusto laudantium. Debitis, facere! Ipsa rem, minus exercitationem odit optio molestias maiores deserunt eos iste nihil, minima quod hic corrupti natus dolor dolorem labore nemo pariatur debitis sed ipsum ipsam.</textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success">Zaktualizuj</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Change State -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Zmiana statusu</h4>
+      </div>
+      <div class="modal-body">
+        <form action="#" name="change_state">
+          <select class="form-control">
+            <option>New</option>
+            <option>Doing</option>
+            <option>Done</option>
+            <option>Canceled</option>
+          </select>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success">Zmień</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+      </div>
     </div>
   </div>
 </div>

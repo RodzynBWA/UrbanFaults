@@ -18,9 +18,11 @@ Rails.application.routes.draw do
   resources :reports, only: [:new, :create, :show, :edit]
   
   scope :admin do
+    put '/ban' => 'admin#ban_user', as: :ban
     get '/users' => 'admin#users', as: :admin_users_list
     get '/manage_reports' => 'admin#reports', as: :admin_manage_reports
   end
+  post 'new_statement' => 'admin#new_statement', as: :new_statement
   
   get '/index' => 'home_pages#index', as: :home
   root 'home_pages#index'

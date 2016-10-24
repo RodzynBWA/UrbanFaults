@@ -5,7 +5,27 @@ body {
    
   //Boostrap fixes
   .col-sm-12, .col-md-12, .col-lg-12 {padding:0px;}
-   
+  
+  //Input file
+  .inputfile {
+  	width: 0.1px;
+  	height: 0.1px;
+  	opacity: 0;
+  	overflow: hidden;
+  	position: absolute;
+  	z-index: -1;
+  }
+  .inputfile + label {
+    background-color: #2780E3;
+    color: #fff;
+    padding: 10px 15px;
+  }
+
+  .inputfile:focus + label,
+  .inputfile + label:hover {
+      background-color: #1967BE;
+      cursor: pointer;
+  }
 
   #entrance {
     background-image: $url_bg;
