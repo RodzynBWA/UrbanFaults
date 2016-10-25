@@ -1,6 +1,5 @@
-
-<% if @err.nil? %>
-  alert 'done:' + <%= @user_to_ban %>
+<% if @err != nil || !@err.nil? || !@err.empty? %>
+  alert 'n + <%= @err %>'
 <% else %>
-  alert 'n' + <%= @err %>
+  alert 'done:<%= @user_to_ban %>'
 <% end %>

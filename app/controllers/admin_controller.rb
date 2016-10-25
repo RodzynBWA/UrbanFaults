@@ -30,7 +30,7 @@ class AdminController < ApplicationController
         format.js
       end
     end
-     respond_to do |format|
+    respond_to do |format|
       format.js
     end
     
