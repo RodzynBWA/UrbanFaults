@@ -17,7 +17,7 @@
             <span class="label label-primary"><%= report.report_category.name %></span>
             <hr>
             <p class="text-justify"><%= report.descr %></p>
-            <%= button_to t('.more_details'), report, class: "btn btn-success" %>
+            <%= button_to t('.more_details'), report_path(report), method: :get, class: "btn btn-success" %>
           </div>
         </div>
       </div>

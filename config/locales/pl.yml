@@ -93,6 +93,11 @@ pl:
       more_details: Więcej szczegółów
     form:
       send_report: Wyślij zgłoszenie
+  report:
+    zero: brak zgłoszeń"
+    one: "1 zgłoszenie"
+    few: "%{count} zgłoszenia"
+    other: "%{count} zgłoszeń"
   
   date:
     abbr_day_names:

@@ -10,8 +10,8 @@ class Report < ActiveRecord::Base
   $States = ["New", "Doing", "Done", "Canceled"]
   
   def check_state
-    if self.state == nil || $States.include?(self.state)
-      self.state = $States[0]
+    if state == nil || $States.include?(state)
+      set_state_as_new()
     end
   end
   
@@ -21,19 +21,19 @@ class Report < ActiveRecord::Base
   scope :_canceled, -> { where(state: $States[3]) }
   
   def set_state_as_new
-    self.update_attribute state, $States[0]
+    self.update_attribute :state, $States[0]
   end
   
   def set_state_as_doing
-    self.update_attribute state, $States[1]
+    self.update_attribute :state, $States[1]
   end
   
   def set_state_as_done
-   self.update_attribute state, $States[2]
+   self.update_attribute :state, $States[2]
   end
   
   def set_state_as_canceled
-    self.update_attribute state, $States[3]
+    self.update_attribute :state, $States[3]
   end
   
   validates :title, presence: true, uniqueness: false
