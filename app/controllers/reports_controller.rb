@@ -12,8 +12,8 @@ class ReportsController < ApplicationController
     @reports = Report.all
   end
 
-  # GET /reports/1
-  # GET /reports/1.json
+  # GET /reports/id
+  # GET /reports/id.json
   def show
   end
 
@@ -22,7 +22,7 @@ class ReportsController < ApplicationController
     @report = Report.new
   end
 
-  # GET /reports/1/edit
+  # GET /reports/id/edit
   def edit
   end
 
@@ -52,8 +52,8 @@ class ReportsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /reports/1
-  # PATCH/PUT /reports/1.json
+  # PATCH/PUT /reports/id
+  # PATCH/PUT /reports/id.json
   def update
     respond_to do |format|
       if @report.update(report_params)
@@ -66,13 +66,20 @@ class ReportsController < ApplicationController
     end
   end
 
-  # DELETE /reports/1
-  # DELETE /reports/1.json
+  # DELETE /reports/id
+  # DELETE /reports/id.json
   def destroy
-    @report.destroy
-    respond_to do |format|
-      format.html { redirect_to reports_url, notice: 'Zgłoszenie zostało pomyślnie usunięte!'}
-      format.json { head :no_content }
+    if(current_user.id == @report.user_id)
+      @report.destroy
+      respond_to do |format|
+        format.html {redirect_to reports_url, notice: 'Zgłoszenie zostało pomyślnie usunięte!'}
+        format.json {head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html {redirect_to reports_url, notice: 'Nie masz uprawnień do usunięcia tego zgłoszenia!'}
+        format.json { head :no_content }
+      end
     end
   end
   

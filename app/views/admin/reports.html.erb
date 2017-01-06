@@ -17,7 +17,7 @@
                 <td><h4><%= report.title %></h4></td>
                 <td><h4><%= report.updated_at.strftime('%d.%m.%Y o %H:%M') %></h4></td>
                 <td>
-                  <%= button_to t('.view'), report_path(report), method: :get, class: "btn btn-primary pull-right" %>
+                  <%= button_to t('.view'), report_path(report), method: :get, class: "btn btn-primary pull-right", method: :get %>
                   <button class="btn btn-default pull-right" data-toggle="modal" data-target="#myModal2">Zmień status</button>
                   <button class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal">Wygłoś komunikat</button>
                   <button class="btn btn-danger pull-right">Usuń</button>
@@ -45,7 +45,7 @@
                 <td><h4><%= report.title %></h4></td>
                 <td><h4><%= report.updated_at %></h4></td>
                 <td>
-                  <%= button_to t('.view'), report_path(report), class: "btn btn-primary pull-right", method: :get %>
+                  <%= button_to t('.view'), report, class: "btn btn-primary pull-right", method: :get %>
                   <button class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal1">Edytuj komunikat</button>
                   <button class="btn btn-danger pull-right">Usuń</button>
                 </td>

@@ -19,6 +19,12 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
+  
+  # GET /my_report
+  def reports
+    @user_reported_problems = Report.where(user_id: current_user.id, state: "New" || "Doing")
+    @user_done_problems = Report.where(user_id: current_user.id, state: "Done")
+  end
 
   # GET /users/1/edit
   def edit

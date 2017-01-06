@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 col-lg-12">
+      <h1><%= t('.your_reports') %></h1>
+      <% if @user_reported_problems.count > 0 %>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <td><h4 style="font-weight: bold;"><%= t('.report_name') %></h4></td>
+              <td><h4 style="font-weight: bold;"><%= t('.report_date') %></h4></td>
+              <td class="pull-right"><h4 style="font-weight: bold;"><%= t('.report_action') %></h4></td>
+            </tr>
+          </thead>
+          <tbody>
+            <% @user_reported_problems.each do |report| %>
+              <tr>
+                <td><h4><%= report.title %></h4></td>
+                <td><h4><%= report.updated_at.strftime('%d.%m.%Y o %H:%M') %></h4></td>
+                <td>
+                  <%= button_to t('.delete'), report_path(report), method: :delete, :class => "btn btn-danger pull-right", data: {confirm: 'Jesteś pewny że chcesz usunąć to zgłoszenie?'} %>
+                  <button class="btn btn-default pull-right" data-toggle="modal" data-target="#myModal2">Edytuj</button>
+                  <%= button_to t('.view'), report_path(report), method: :get, class: "btn btn-primary pull-right" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <h2><%= t('.no_results_found') %></h2>
+      <% end %>
+      <h1><%= t('.done_problems') %></h1>
+      <% if @user_done_problems.count > 0 %>
+      <% else %>
+        <h2><%= t('.no_results_found') %></h2>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Edit Alert -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Komunikat</h4>
+      </div>
+      <div class="modal-body">
+        <textarea class="form-control" id="alert" rows="10" style="width: 100%; resize: none;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit odit, consequatur distinctio, repellendus nulla maxime vero eligendi iste incidunt delectus, iusto laudantium. Debitis, facere! Ipsa rem, minus exercitationem odit optio molestias maiores deserunt eos iste nihil, minima quod hic corrupti natus dolor dolorem labore nemo pariatur debitis sed ipsum ipsam.</textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success">Zaktualizuj</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+      </div>
+    </div>
+  </div>
+</div>

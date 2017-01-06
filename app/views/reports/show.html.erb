@@ -5,8 +5,8 @@
       <span class="label label-primary"><%= @report.report_category.name %></span>
       <hr>
       <p style="margin: 25px 0;" class="text-justify"><%= @report.descr %></p>
-      <%= image_tag @report.report_image.url %>
-      <div class="alert alert-success" role="alert">
+      <%= image_tag @report.report_image.url, :class => "img-responsive" %>
+      <div class="report-alert alert alert-success" role="alert">
         <h3><strong>Komunikat dotyczący problemu</strong></h3>
         <h6>Dodany przez: Halina Kowalska - Wydział nr 1</h6>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque provident nihil cumque accusantium reiciendis quidem, doloribus officiis vitae, doloremque amet porro unde quae at.</p>
@@ -16,6 +16,9 @@
       <div class="thumbnail">
         <span class="label label-primary"><%= t 'reports.state.'+@report.state %></span>
         <h5>Dodany: <%= @report.created_at %></h5>
+        <% if(@report.created_at != @report.updated_at) %>
+          <h5>Ostatnio zmodyfikowany o: </br> <%= @report.updated_at %></h5>
+        <% end %>
         <h5>Przez: <%= @report.user.first_name+' '+@report.user.last_name %></h5>
       </div>
     </div>

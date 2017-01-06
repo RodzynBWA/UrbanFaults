@@ -40,6 +40,7 @@ pl:
       domain: MiejskieProblemy.pl
       home: Strona główna
       browse_reports: Przeglądaj problemy
+      user_reports: Twoje zgłoszenia
       new_problem: Zgłoś problem
       login: Zaloguj się
       logout: Wyloguj
@@ -60,6 +61,16 @@ pl:
     new:
     reg:
       register: Zarejestruj
+    reports:
+      your_reports: Twoje nierozwiązane zgłoszenia
+      done_problems: Twoje zażegnane zgłoszenia
+      no_results_found: Nie znaleziono zgłoszeń
+      report_name: Tytuł zgłoszenia
+      report_date: Data zgłoszenia
+      report_action: Dostępne akcje
+      view: Zobacz
+      edit: Edytuj
+      delete: Usuń
       
   sessions:
     new:
@@ -93,6 +104,8 @@ pl:
       more_details: Więcej szczegółów
     form:
       send_report: Wyślij zgłoszenie
+    state:
+      New: Nowe
   report:
     zero: brak zgłoszeń"
     one: "1 zgłoszenie"
