@@ -15,10 +15,10 @@
 //= require turbolinks
 //= require jquery-ui
 //= require jquery-ui/effect.all
-//= require jquery-ui/autocomplete
 //= require spin
 //= require jquery.spin
 //= require autocomplete-rails
+//= require fancybox
 
 //= require bootstrap-sprockets
 //= require turbolinks

@@ -5,7 +5,11 @@
       <span class="label label-primary"><%= @report.report_category.name %></span>
       <hr>
       <p style="margin: 25px 0;" class="text-justify"><%= @report.descr %></p>
-      <%= image_tag @report.report_image.url, :class => "img-responsive" %>
+        <%= if is_img_exists(@report.report_image.url)
+          link_to @report.report_image.url, :class => "fancybox" do 
+            image_tag @report.report_image.url, :class => "img-responsive" 
+          end
+        end %>
       <div class="report-alert alert alert-success" role="alert">
         <h3><strong>Komunikat dotyczący problemu</strong></h3>
         <h6>Dodany przez: Halina Kowalska - Wydział nr 1</h6>

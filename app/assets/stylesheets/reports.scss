@@ -14,4 +14,21 @@ body {
   div.report-alert {
     margin-top: 25px;
   }
+  
+  .fancybox-opened {
+    .fancybox-skin {
+      background: rgba(23, 48, 78, 1) !important;
+      box-shadow: none !important;
+      -webkit-box-shadow: none !important;
+    }
+  }
+  
+  .fancybox-close {
+    top: 0px !important;
+    right: 0px !important;
+    
+    &:hover {
+      background-color: transition !important;
+    }
+  }
 }

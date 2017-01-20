@@ -1,0 +1,13 @@
+body#reports {
+  .container-fluid {
+    #content {
+      .jumbotron {
+        h1 {font-size: 56px;}
+        p {
+          line-height: 30px; 
+          margin-top: 25px;
+        }
+      }
+    }
+  }
+}

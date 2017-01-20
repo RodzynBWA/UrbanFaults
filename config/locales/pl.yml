@@ -62,7 +62,7 @@ pl:
     reg:
       register: Zarejestruj
     reports:
-      your_reports: Twoje nierozwiązane zgłoszenia
+      your_reports: Twoje nierozpatrzone zgłoszenia
       done_problems: Twoje zażegnane zgłoszenia
       no_results_found: Nie znaleziono zgłoszeń
       report_name: Tytuł zgłoszenia

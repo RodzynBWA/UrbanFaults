@@ -1,5 +1,6 @@
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy]
+  helper_method :is_img_exists
   
   def autocomplete_city_cname
     ca = City.where("name LIKE '%#{params[:term]}%'").order(:name)
@@ -77,7 +78,7 @@ class ReportsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html {redirect_to reports_url, notice: 'Nie masz uprawnień do usunięcia tego zgłoszenia!'}
+        format.html {redirect_to reports_url, alert: 'Nie masz uprawnień do usunięcia tego zgłoszenia!'}
         format.json { head :no_content }
       end
     end
@@ -85,6 +86,14 @@ class ReportsController < ApplicationController
   
   def new_statement
     
+  end
+  
+  def is_img_exists(img)
+    if (File.file?(Rails.root+'public'+img[1..img.length]) === true)
+      return true
+    else 
+      return false
+    end
   end
 
   private

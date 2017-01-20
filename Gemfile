@@ -15,6 +15,8 @@ gem 'jquery-modal-rails'
 gem 'spinjs-rails'
 gem 'rails-jquery-autocomplete'
 
+gem 'fancybox2-rails', '~> 0.2.8'
+
 gem 'bcrypt', '~> 3.1.11'
 gem 'figaro'
 
