@@ -10,7 +10,7 @@ c1 = City.create(name: 'Bielawa')
 c2 = City.create(name: 'Nowhere')
 
 t = User.create(email: 't@t.t', first_name: 'First', last_name: 'Laster', password: '1234', city: c1)
-a = User.create(email: 'a@t.t', first_name: 'Admino', last_name: 'Border', password: '1234', city: c2, is_admin: true)
+a = User.create(email: 'a@t.t', first_name: 'Admino', last_name: 'Border', password: '1234', city: c2, ps_level: 4)
 demo = User.create(email: 'demo@user.pl', first_name: 'Użytkownik', last_name: 'Zwykły', password: 'demo', city: c2,)
 demo_admin = User.create(email: 'demo@user2.pl', first_name: 'Użytkownik', last_name: 'Kolejny', password: 'demo', city: c1)
 
@@ -33,7 +33,7 @@ r2 = Report.create(title: 'Awaria oświetlenia',
                    street: 'Wersalska', 
                    descr: 'Lorem ipsum dolor sit amet consequentis lot.', 
                    ip: '192.168.0.1', 
-                   user: t, 
+                   user: a, 
                    report_category: rc2)
 
 r3 = Report.create(title: 'Dzikie wysypisko', 
@@ -41,7 +41,7 @@ r3 = Report.create(title: 'Dzikie wysypisko',
                    street: 'Alfabetyczna', 
                    descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dolor tortor, interdum sit amet rhoncus. ', 
                    ip: '192.168.1.1', 
-                   user: t, 
+                   user: demo, 
                    report_category: rc3)
                    
 r4 = Report.create(title: 'Nieprzejezdna droga', 

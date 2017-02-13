@@ -1,0 +1,25 @@
+  <div class="container" id="content">
+    <div class="row">
+      <div class="col-md-12 col-lg-12">
+        <div class="jumbotron">
+          <h1>Mój profil</h1>
+          <p>Edytuj swoje dane</p>
+        </div>
+        <p>
+          <span class="label label-success tips">TIP 1</span> 
+          Możesz zmienić np. tylko swój e-mail i hasło. Nie musisz zmieniać wszystkich danych.
+        </p>
+        <p>
+          <span class="label label-success tips">TIP 2</span> 
+          Dane możesz zaktualizować nadpisując aktualne i zatwierdzając je przyciskiem "Aktualizuj dane"
+        </p>
+        <%= form_for(@user) do |u| %>
+          <%= u.label :first_name %>
+          <%= u.text_field :first_name, class: 'form-control' %>
+          
+          <%= u.label :last_name %>
+          <%= u.text_field :last_name, class: 'form-control' %>
+        <% end %>
+      </div>
+    </div>
+  </div>  

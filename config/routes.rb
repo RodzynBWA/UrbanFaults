@@ -11,12 +11,11 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :update]
   get '/forgot_pwd' => 'users#forgot_pwd', as: :forgot_pwd
   
-  get '/research' => "reports#index"
+  get '/research' => "reports#index", as: :research
   get '/my_reports' => "users#reports", as: :user_reports
-  resources :reports do
+  resources :reports, only: [:new, :create, :show, :edit, :destroy] do
     get 'autocomplete_city_cname', on: :collection
   end
-  resources :reports, only: [:new, :create, :show, :edit]
   
   scope :admin do
     put '/ban' => 'admin#ban_user', as: :ban

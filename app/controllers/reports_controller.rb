@@ -70,15 +70,20 @@ class ReportsController < ApplicationController
   # DELETE /reports/id
   # DELETE /reports/id.json
   def destroy
-    if(current_user.id == @report.user_id)
+    if !@report
+      respond_to do |format|
+        format.html {redirect_to research_url, alert: 'Podane zgłoszenie już nie istnieje kolego!'}
+        format.json { head :no_content }
+      end
+    elsif current_user.id == @report.user_id || current_user.is_admin
       @report.destroy
       respond_to do |format|
-        format.html {redirect_to reports_url, notice: 'Zgłoszenie zostało pomyślnie usunięte!'}
+        format.html {redirect_to research_url, notice: 'Zgłoszenie zostało pomyślnie usunięte!'}
         format.json {head :no_content }
       end
     else
       respond_to do |format|
-        format.html {redirect_to reports_url, alert: 'Nie masz uprawnień do usunięcia tego zgłoszenia!'}
+        format.html {redirect_to research_url, alert: 'Nie masz uprawnień do usunięcia tego zgłoszenia!'}
         format.json { head :no_content }
       end
     end
@@ -99,7 +104,7 @@ class ReportsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_report
-      @report = Report.find(params[:id])
+      @report = Report.find_by id: params[:id]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
