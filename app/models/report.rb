@@ -2,6 +2,8 @@ class Report < ActiveRecord::Base
   belongs_to :report_category
   belongs_to :user
   belongs_to :city
+  belongs_to :street
+  belongs_to :department
   has_one :statement
   
   mount_uploader :report_image, ReportImage

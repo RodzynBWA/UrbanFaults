@@ -27,6 +27,8 @@ gem 'turbolinks', '~> 5.0.0.beta'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'rack-attack'
+
 group :development, :test do
   gem 'byebug'
   gem 'faker'

@@ -1,6 +1,7 @@
 class City < ActiveRecord::Base
   has_many :reports
   has_many :users
+  has_many :streets
   before_save :downcase_fields
   
   def downcase_fields

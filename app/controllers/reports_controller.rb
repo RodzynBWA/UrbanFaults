@@ -6,6 +6,11 @@ class ReportsController < ApplicationController
     ca = City.where("name LIKE '%#{params[:term]}%'").order(:name)
     render :json => ca.map { |city| {id: city.id, label: city.cname, value: city.cname} }
   end
+  
+  def autocomplete_street_sname
+    ca = Street.where("name LIKE '%#{params[:term]}%'").order(:name)
+    render :json => ca.map { |street| {id: street.id, label: street.sname, value: street.sname} }
+  end
 
   # GET /reports
   # GET /reports.json
@@ -34,20 +39,28 @@ class ReportsController < ApplicationController
     cn = params[:report][:city]
     if cn.length > 0
       c = City.where(name: cn.downcase).take
-      if c == nil
-        c = City.create(name: cn)
-      end
       @report.city = c
-      
+      sn = params[:report][:street]
+      if sn.length > 0
+        s = Street.where(name: sn.downcase, city: c).take
+        @report.street = s
+      end
     end
-    @report.ip = request.remote_ip
-    @report.user = current_user
-    respond_to do |format|
-      if @report.save
-        format.html { redirect_to @report, notice: 'Zgłoszenie zostało pomyślnie dodane!' }
-        format.json { render :show, status: :created, location: @report }
-      else
-        format.html { render :new }
+    if @report.street != nil
+      @report.ip = request.remote_ip
+      @report.user = current_user
+      respond_to do |format|
+        if @report.save
+          format.html { redirect_to @report, notice: 'Zgłoszenie zostało pomyślnie dodane!' }
+          format.json { render :show, status: :created, location: @report }
+        else
+          format.html { render :new }
+          format.json { render json: @report.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { render :new , alert: 'Błędne miasto/ulica!'}
         format.json { render json: @report.errors, status: :unprocessable_entity }
       end
     end
@@ -109,6 +122,6 @@ class ReportsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def report_params
-      params.require(:report).permit(:title, :report_category_id, :street, :house, :short_place_desc, :descr, :report_image)
+      params.require(:report).permit(:title, :report_category_id, :house, :short_place_desc, :descr, :report_image)
     end
 end

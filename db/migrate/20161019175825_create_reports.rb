@@ -2,7 +2,6 @@ class CreateReports < ActiveRecord::Migration
   def change
     create_table :reports do |t|
       t.string :title, null: false, unique: false
-      t.string :street, null: false, unique: false
       t.string :house, null: true, unique: false
       t.string :short_place_desc, null: true, unique: false
       t.string :descr, null: false, unique: false
@@ -12,7 +11,9 @@ class CreateReports < ActiveRecord::Migration
       
       t.references :user, index: true, foreign_key: true, null: false, unique: false
       t.references :city, index: true, foreign_key: true, null: false, unique: false
+      t.references :street, index: true, foreign_key: true, null: false, unique: false
       t.references :report_category, index: true, foreign_key: true, null: false, unique: false
+      t.references :department, index: true, foreign_key: true, null: true, unique: false
 
       t.timestamps null: false
     end

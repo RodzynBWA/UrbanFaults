@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/my_reports' => "users#reports", as: :user_reports
   resources :reports, only: [:new, :create, :show, :edit, :destroy] do
     get 'autocomplete_city_cname', on: :collection
+    get 'autocomplete_street_sname', on: :collection
   end
   
   scope :admin do

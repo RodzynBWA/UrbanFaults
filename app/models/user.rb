@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
     end
     
     def is_official
-        self.ps_level == 2
+        is_admin || self.ps_level == 2
     end
     
     def promote

@@ -5,7 +5,6 @@ class CreateStatements < ActiveRecord::Migration
       t.string :content, null: false, unique: false
       
       t.references :user, index: true, foreign_key: true, null: false, unique: false
-      t.references :department, index: true, foreign_key: true, null: false, unique: false
       t.references :report, index: true, foreign_key: true, null: false, unique: false
 
       t.timestamps null: false
