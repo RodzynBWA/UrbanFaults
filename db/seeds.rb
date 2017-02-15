@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+
+
 c1 = City.create(name: 'Bielawa')
 c2 = City.create(name: 'Nowhere')
 
@@ -15,6 +17,7 @@ s3 = Street.create(name: 'Inna', city: c1)
 
 
 t = User.create(email: 't@t.t', first_name: 'First', last_name: 'Laster', password: '1234', city: c1)
+o = User.create(email: 'o@t.t', first_name: 'Urzednik', last_name: 'Kolejny', password: '1234', city: c1, ps_level: 2)
 a = User.create(email: 'a@t.t', first_name: 'Admino', last_name: 'Border', password: '1234', city: c2, ps_level: 4)
 demo = User.create(email: 'demo@user.pl', first_name: 'Użytkownik', last_name: 'Zwykły', password: 'demo', city: c2,)
 demo_admin = User.create(email: 'demo@user2.pl', first_name: 'Użytkownik', last_name: 'Kolejny', password: 'demo', city: c1)
@@ -23,8 +26,8 @@ d1 = Department.create(name: "D_1")
 d2 = Department.create(name: "D_2")
 
 DepartmentAssignment.create(department: d1, user: t)
-DepartmentAssignment.create(department: d1, user: a)
-DepartmentAssignment.create(department: d2, user: demo)
+DepartmentAssignment.create(department: d1, user: o)
+DepartmentAssignment.create(department: d2, user: a)
 
 rc1 = ReportCategory.create(name: 'Porządek w mieście')
 rc2 = ReportCategory.create(name: 'Problemy z elektrycznością')
@@ -37,7 +40,8 @@ r1 = Report.create(title: 'Awaria awarii',
                    ip: '0.0.0.666', 
                    user: t, 
                    report_image: '',
-                   report_category: rc1)
+                   report_category: rc1,
+                   department: d1)
 
 r2 = Report.create(title: 'Awaria oświetlenia', 
                    city: c1, 

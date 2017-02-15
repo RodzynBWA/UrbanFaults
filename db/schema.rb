@@ -77,8 +77,8 @@ ActiveRecord::Schema.define(version: 20161024194148) do
   add_index "statements", ["user_id"], name: "index_statements_on_user_id", using: :btree
 
   create_table "streets", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.integer  "city_id",    limit: 4
+    t.string   "name",       limit: 255, null: false
+    t.integer  "city_id",    limit: 4,   null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end

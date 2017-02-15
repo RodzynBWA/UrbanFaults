@@ -4,12 +4,12 @@ class AdminController < ApplicationController
   before_action :set_user, only: [:users, :reports]
   layout false, only: [:ban_user]
   
+  def index
+    
+  end  
+
   def users
     @users = User.all
-  end
-  
-  def reports
-    @statement = Statement.new
   end
   
   def ban_user
@@ -33,11 +33,6 @@ class AdminController < ApplicationController
     respond_to do |format|
       format.js
     end
-    
-  end
-  
-  def new_statement
-  
   end
   
   private

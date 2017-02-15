@@ -9,7 +9,7 @@ class Report < ActiveRecord::Base
   mount_uploader :report_image, ReportImage
   before_validation :check_state
   
-  $States = ["New", "Doing", "Done", "Canceled"]
+  $States = ["New", "Doing", "Suspended", "Done", "Canceled"]
   
   def check_state
     if state == nil || $States.include?(state)
@@ -19,8 +19,9 @@ class Report < ActiveRecord::Base
   
   scope :_new, -> { where(state: $States[0]) }
   scope :_doing, -> { where(state: $States[1]) }
-  scope :_done, -> { where(state: $States[2]) }
-  scope :_canceled, -> { where(state: $States[3]) }
+  scope :_suspended, -> { where(state: $States[2]) }
+  scope :_done, -> { where(state: $States[3]) }
+  scope :_canceled, -> { where(state: $States[4]) }
   
   def set_state_as_new
     self.update_attribute :state, $States[0]
@@ -30,12 +31,16 @@ class Report < ActiveRecord::Base
     self.update_attribute :state, $States[1]
   end
   
+  def set_state_as_suspended
+    self.update_attribute :state, $States[2]
+  end
+  
   def set_state_as_done
-   self.update_attribute :state, $States[2]
+   self.update_attribute :state, $States[3]
   end
   
   def set_state_as_canceled
-    self.update_attribute :state, $States[3]
+    self.update_attribute :state, $States[4]
   end
   
   validates :title, presence: true, uniqueness: false

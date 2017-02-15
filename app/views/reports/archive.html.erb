@@ -1,0 +1,27 @@
+<h1><%= t('.done_problems') %></h1>
+<% if Report._done.count > 0 %>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <td><h4 style="font-weight: bold;"><%= t('.report_name') %></h4></td>
+        <td><h4 style="font-weight: bold;"><%= t('.report_date') %></h4></td>
+        <td class="pull-right"><h4 style="font-weight: bold;"><%= t('.report_action') %></h4></td>
+      </tr>
+    </thead>
+    <tbody>
+      <% Report._done.each do |report| %>
+        <tr>
+          <td><h4><%= report.title %></h4></td>
+          <td><h4><%= report.updated_at %></h4></td>
+          <td>
+            <%= button_to t('.view'), report, class: "btn btn-primary pull-right", method: :get %>
+            <button class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal1">Edytuj komunikat</button>
+            <button class="btn btn-danger pull-right">Usuń</button>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <h2>Brak</h2>
+<% end %>

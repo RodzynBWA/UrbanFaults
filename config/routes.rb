@@ -18,12 +18,17 @@ Rails.application.routes.draw do
     get 'autocomplete_street_sname', on: :collection
   end
   
+  scope :official do
+    get '/manage_reports' => 'official#reports', as: :official_manage_reports
+    get '/index' => 'official#index', as: :official_index
+  end
+  
   scope :admin do
     put '/ban' => 'admin#ban_user', as: :ban
     get '/users' => 'admin#users', as: :admin_users_list
-    get '/manage_reports' => 'admin#reports', as: :admin_manage_reports
+    get '/index' => 'admin#index', as: :admin_index
   end
-  post 'new_statement' => 'admin#new_statement', as: :new_statement
+  post 'new_statement' => 'official#new_statement', as: :new_statement
   
   get '/index' => 'home_pages#index', as: :home
   root 'home_pages#index'

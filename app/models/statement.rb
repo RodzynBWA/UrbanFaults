@@ -4,4 +4,5 @@ class Statement < ActiveRecord::Base
   
   validates :user, presence: true, uniqueness: false
   validates :report, presence: true, uniqueness: false
+  validates :state, presence: true, uniqueness: false
 end

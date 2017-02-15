@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 col-lg-12">
+      <h1><%= t('.new_problems') %></h1>
+      <% if Report._new.count > 0 %>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <td><h4 style="font-weight: bold;"><%= t('.report_name') %></h4></td>
+              <td><h4 style="font-weight: bold;"><%= t('.report_date') %></h4></td>
+              <td class="pull-right"><h4 style="font-weight: bold;"><%= t('.report_action') %></h4></td>
+            </tr>
+          </thead>
+          <tbody>
+            <% Report._new.order("created_at desc").each do |report| %>
+              <tr>
+                <td><h4><%= report.title %></h4></td>
+                <td><h4><%= report.updated_at.strftime('%d.%m.%Y o %H:%M') %></h4></td>
+                <td>
+                  <%= button_to t('.view'), report_path(report), method: :get, class: "btn btn-primary pull-right", method: :get %>
+                  <button class="btn btn-success pull-right" data-toggle="modal" data-target="#change_status_<%= report.id %>">Zmień status</button>
+                  <% if is_admin? %>
+                    <button class="btn btn-danger pull-right">Usuń</button>
+                  <% end %>
+                </td>
+              </tr>
+              <div class="modal fade" id="change_status_<%= report.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <%= form_for Statement.new, url: new_statement_path do |f| %>
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Zmień status</h4>
+                      </div>
+                      <div class="modal-body">
+                        <%= select_tag :state, options_for_select($States), class: "form-control" %>
+                        <%= f.text_area :content, {class: "form-control", placeholder: t('.statement_content'), id: "alert", style: "width:100%, resize: none"} %>
+                      </div>
+                      <div class="modal-footer">
+                        <%= f.submit t('.send'), class: "btn-success" %>
+                        <%= button_tag t('.close'), {class: "btn btn-danger", data: {dismiss: "modal"}} %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <h2>Brak</h2>
+      <% end %>
+    </div>
+  </div>
+</div>
